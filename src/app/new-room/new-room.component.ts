@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DbService } from '../db.service';
 
 const initialNewRoomVal = {
@@ -12,15 +11,12 @@ const initialNewRoomVal = {
   template: `
     <h1>New Room</h1>
 
-    <form (ngSubmit)="save()"
-          autocomplete="off"
-          class="needs-validation"
-          [formGroup]="newRoomForm">
+    <form autocomplete="off"
+          class="needs-validation">
 
       <div class="form-group">
         <label>Room name: </label>
-        <input class="form-control"
-               formControlName="roomName">
+        <input class="form-control">
         <div class="invalid-feedback"
              [ngClass]="{show: showError('roomName')}">
           Required
@@ -29,10 +25,7 @@ const initialNewRoomVal = {
 
       <div class="form-group">
         <label>Number of rows:</label>
-        <input class="form-control"
-               type="number"
-               min="1"
-               formControlName="numberOfRows">
+        <input class="form-control">
         <div class="invalid-feedback"
              [ngClass]="{show: showError('numberOfRows')}">
           Must be 1 or more
@@ -41,10 +34,7 @@ const initialNewRoomVal = {
 
       <div class="form-group">
         <label>Average number of seats per row:</label>
-        <input class="form-control"
-               type="number"
-               min="1"
-               formControlName="avgSeatsInRow">
+        <input class="form-control">
         <div class="invalid-feedback"
              [ngClass]="{show: showError('avgSeatsInRow')}">
           Must be 1 or more
@@ -55,7 +45,7 @@ const initialNewRoomVal = {
         <div class="col">
           <button type="submit"
                   class="btn btn-success btn-icon"
-                  [disabled]="!newRoomForm.valid">
+                  [disabled]="">
             Save Room
           </button>
         </div>
@@ -73,41 +63,25 @@ const initialNewRoomVal = {
   styleUrls: ['./new-room.component.scss']
 })
 export class NewRoomComponent implements OnInit {
-  newRoomForm = new FormGroup({
-    roomName: new FormControl('', Validators.required),
-    numberOfRows: new FormControl(
-      null,
-      [Validators.required, Validators.min(1)]),
-    avgSeatsInRow: new FormControl(
-      null,
-      [Validators.required, Validators.min(1)])
-  });
 
   constructor(private db: DbService) {
-    this.newRoomForm.patchValue(initialNewRoomVal);
   }
 
   ngOnInit() {
   }
 
   showError(controlName) {
-    const control = this.newRoomForm.get(controlName);
-    return control.touched && !control.valid;
   }
 
-  save(form) {
-    console.log(this.newRoomForm, form);
-
-    this.db.saveRoomConfig(this.newRoomForm.value)
+  save() {
+    this.db.saveRoomConfig(null)
       .then(id => {
         console.log('room saved, id:', id);
         // this.router.navigate(['/seating-config', id]);
       });
   }
 
-
   reset() {
-    this.newRoomForm.reset(initialNewRoomVal);
   }
 
 }
