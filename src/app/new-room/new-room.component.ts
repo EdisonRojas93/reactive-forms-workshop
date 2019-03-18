@@ -95,16 +95,13 @@ export class NewRoomComponent implements OnInit {
     return control.touched && !control.valid;
   }
 
-  save(form) {
-    console.log(this.newRoomForm, form);
-
+  save() {
     this.db.saveRoomConfig(this.newRoomForm.value)
       .then(id => {
         console.log('room saved, id:', id);
         // this.router.navigate(['/seating-config', id]);
       });
   }
-
 
   reset() {
     this.newRoomForm.reset(initialNewRoomVal);
