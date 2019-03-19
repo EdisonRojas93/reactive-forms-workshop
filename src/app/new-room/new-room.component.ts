@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DbService } from '../db.service';
+import { Router } from '@angular/router';
 
 const initialNewRoomVal = {
   numberOfRows: 10,
@@ -83,7 +84,7 @@ export class NewRoomComponent implements OnInit {
       [Validators.required, Validators.min(1)])
   });
 
-  constructor(private db: DbService) {
+  constructor(private db: DbService, private router: Router) {
     this.newRoomForm.patchValue(initialNewRoomVal);
   }
 
@@ -99,7 +100,7 @@ export class NewRoomComponent implements OnInit {
     this.db.saveRoomConfig(this.newRoomForm.value)
       .then(id => {
         console.log('room saved, id:', id);
-        // this.router.navigate(['/room-seating', id]);
+        this.router.navigate(['/room-seating', id]);
       });
   }
 
