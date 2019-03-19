@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Instructions
+1. Implement in room-seating.component:
+a. Initialize room name and id;
+b. Duplicating a row;
+c. Deleting a row
+2. Adding / removing seats from a row. Hint: valueChanges on the numberOfSeats control.
+3. Bonus: 
+a. Debounce;
+b. Distinct until changed;
+c. Alert if removing seats.
