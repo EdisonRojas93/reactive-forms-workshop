@@ -34,7 +34,7 @@ import { ActivatedRoute } from '@angular/router';
 
               <app-select-seat-control
                 *ngFor="let seat of seatSelectForm.get(['seating', i, 'seats']).controls; let j = index"
-                [formControl]="seat"></app-select-seat-control>
+                [value]="seat.value"></app-select-seat-control>
             </div>
             <div class="clr-col-sm-1">{{ row.value.rowNumber + 1 }}</div>
 

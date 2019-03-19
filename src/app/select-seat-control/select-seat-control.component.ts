@@ -8,7 +8,7 @@ import {
   Optional,
   SkipSelf
 } from '@angular/core';
-import { ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlContainer, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SeatTypesService } from '../seat-types.service';
 
 @Component({
@@ -32,7 +32,7 @@ import { SeatTypesService } from '../seat-types.service';
   styleUrls: ['./select-seat-control.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectSeatControlComponent implements ControlValueAccessor {
+export class SelectSeatControlComponent {
   _seatType;
   _value;
   control;
@@ -54,33 +54,8 @@ export class SelectSeatControlComponent implements ControlValueAccessor {
 
   }
 
-  onChange = _ => {
-  };
-
-  onTouched = () => {
-  };
-
-  writeValue(value: any): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
-    this.cd.detectChanges();
-  }
-
   select() {
     this._value = { ...this._value, selected: !this._value.selected };
-    this.onChange(this._value);
-    this.onTouched();
   }
 
 }
