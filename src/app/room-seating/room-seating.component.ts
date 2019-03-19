@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DbService } from '../db.service';
 import { ActivatedRoute } from '@angular/router';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -74,10 +74,7 @@ export class RoomSeatingComponent implements OnInit {
 
   generateRow(row) {
     const numberOfSeats = new FormControl(row.numberOfSeats);
-    numberOfSeats.valueChanges.pipe(
-      debounceTime(500),
-      distinctUntilChanged())
-      .subscribe(val => this.changeSeatCount(numberOfSeats, val));
+
     return new FormGroup({
       numberOfSeats,
       seats: new FormArray(row.seats.map(seat => {
@@ -91,25 +88,12 @@ export class RoomSeatingComponent implements OnInit {
   }
 
   duplicateRow(row, rowNumber) {
-    row.parent.insert(rowNumber, this.generateRow(row.value));
   }
 
   deleteRow(row, rowNumber) {
-    row.parent.removeAt(rowNumber);
   }
 
   changeSeatCount(numberOfSeatsControl, newNumber: number) {
-    const seatsArrayControl = numberOfSeatsControl.parent.get('seats');
-    const numberOfSeats = seatsArrayControl.length;
-    if (newNumber > numberOfSeats) {
-      for (let i = numberOfSeats; i < newNumber; i++) {
-        seatsArrayControl.push(new FormControl({}));
-      }
-    } else {
-      for (let i = numberOfSeats; i > newNumber; i--) {
-        seatsArrayControl.removeAt(newNumber);
-      }
-    }
   }
 
 }
