@@ -2,6 +2,17 @@
 $error-color: #dc3545;
 $valid-color: #28a745;
 
+html, body, .content-container {
+  height: 100%;
+}
+input[type=number] {
+  width: 40px;
+}
+
+.main-container {
+  height: calc(100% - 60px);
+}
+
 body {
   padding: 20px;
 }
@@ -27,3 +38,4 @@ body {
 .form-group {
   margin-bottom: 0;
 }
+
