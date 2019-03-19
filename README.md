@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Instructions
+1. Add (import) the ReactiveFormsModule to the main module
+2. In the new-room.component create a form called newRoomForm with the following form controls:
+ a. roomName
+ b. numberOfRows
+ c. avgSeatsInRow
+3. Connect the form to the template. Hint: [formGroup] and formControlName
+4. Add ngSubmit to the form - use the method save().
+Do you need to pass arguments?
+5. Pass the form value to the db method saveRoomConfig in save()
+6. Add initial value (given as a const in the top of the file). 
+There are several ways, which would you use?
+7. Implement the reset method to patch the initial value
