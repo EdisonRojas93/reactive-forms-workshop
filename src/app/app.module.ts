@@ -10,6 +10,8 @@ import { RoomSeatingComponent } from './room-seating/room-seating.component';
 import { SeatingConfigRowComponent } from './seating-config-row/seating-config-row.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SeatControlComponent } from './seat-control/seat-control.component';
+import { SelectSeatsComponent } from './select-seats/select-seats.component';
+import { SelectSeatControlComponent } from './select-seat-control/select-seat-control.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { SeatControlComponent } from './seat-control/seat-control.component';
     NewRoomComponent,
     RoomSeatingComponent,
     SeatingConfigRowComponent,
-    SeatControlComponent
+    SeatControlComponent,
+    SelectSeatsComponent,
+    SelectSeatControlComponent
   ],
   imports: [
     BrowserModule,
